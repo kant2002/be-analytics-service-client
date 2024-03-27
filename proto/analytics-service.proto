@@ -1,6 +1,9 @@
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "analytics.proto";
+
 
 package ua.gov.diia.analytics;
 
@@ -13,41 +16,84 @@ service AnalyticsService {
 }
 
 message GetRatingFormRequest {
-
+    string userIdentifier = 1;
+    string category = 2;
+    string serviceCode = 3;
+    optional google.protobuf.Timestamp statusDate = 4;
+    optional string resourceId = 5;
+    optional string ratingFormCode = 6;
+    optional string screenCode = 7;
+    optional bool hasRatingSubmitThreshold = 8;
+    optional int32 daysAfterLastRatingSubmitThreshold = 9;
+    optional int64 intervalDelay = 10;
+    optional int64 intervalDuration = 11;
 }
 
 message GetRatingFormResponse {
-    
+    optional ua.gov.diia.types.analytics.RatingForm ratingForm = 1;
+    int64 ratingStartsAtUnixTime = 2; 
 }
 
 message IsUserInitiativeRatingAvailableRequest {
-    
-}
-
-message IsUserInitiativeRatingAvailableResponse {
-    
+    string userIdentifier = 1;
+    string category = 2;
+    string serviceCode = 3;
+    optional bool checkTaxpayerCard = 4;
+    optional string screenCode = 5;
+    optional string resourceId = 6;
+    repeated string ignoreScreenCodes = 7;
 }
 
 message IsByRequestRatingAvailableRequest {
-    
+    string userIdentifier = 1;
+    string category = 2;
+    string serviceCode = 3;
+    optional google.protobuf.Timestamp statusDate = 4;
+    optional string resourceId = 5;
+    optional string ratingFormCode = 6;
+    optional string screenCode = 7;
+    optional bool hasRatingSubmitThreshold = 8;
+    optional int32 daysAfterLastRatingSubmitThreshold = 9;
+    optional int32 intervalDelay = 10;
+    optional int32 intervalDuration = 11;    
+}
+
+message IsUserInitiativeRatingAvailableResponse {
+    bool isAvailable = 1;
+    optional int32 processCode = 2;
 }
 
 message IsByRequestRatingAvailableResponse {
+    bool isAvailable = 1;
+    int64 ratingStartsAtUnixTime = 2;
     
 }
 
 message GetRatingReviewsReq {
-    
+    repeated string resourceIds = 1;
+    string serviceCode = 2;
 }
 
 message GetRatingReviewsRes {
-    
+    repeated RatingReview reviews = 1;
+}
+
+message RatingReview {
+    string id = 1;
+    string resourceId = 2;
+    string userIdentifier = 3;
+    optional string comment = 4;
+    int32 rating = 5;
+    repeated string chips = 6;
+    optional google.protobuf.Timestamp date = 7;
 }
 
 message GetRatingInfoReq {
-    
+    string resourceId = 1;
+    string serviceCode = 2;
 }
 
 message GetRatingInfoRes {
-    
+    int64 votesCount = 1;
+    int32 avgRating = 2;
 }
