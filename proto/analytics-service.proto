@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package ua.gov.diia.analytics;
+
+service AnalyticsService {
+    rpc getRatingForm (GetRatingFormRequest) returns (GetRatingFormResponse) {}
+    rpc isUserInitiativeRatingAvailable (IsUserInitiativeRatingAvailableRequest) returns (IsUserInitiativeRatingAvailableResponse) {}
+    rpc isByRequestRatingAvailable (IsByRequestRatingAvailableRequest) returns (IsByRequestRatingAvailableResponse) {}
+    rpc getRatingReviews (GetRatingReviewsReq) returns (GetRatingReviewsRes) {}
+    rpc getRatingInfo (GetRatingInfoReq) returns (GetRatingInfoRes) {}
+}
+
+message GetRatingFormRequest {
+
+}
+
+message GetRatingFormResponse {
+    
+}
+
+message IsUserInitiativeRatingAvailableRequest {
+    
+}
+
+message IsUserInitiativeRatingAvailableResponse {
+    
+}
+
+message IsByRequestRatingAvailableRequest {
+    
+}
+
+message IsByRequestRatingAvailableResponse {
+    
+}
+
+message GetRatingReviewsReq {
+    
+}
+
+message GetRatingReviewsRes {
+    
+}
+
+message GetRatingInfoReq {
+    
+}
+
+message GetRatingInfoRes {
+    
+}
